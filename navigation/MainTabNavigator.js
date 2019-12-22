@@ -5,8 +5,8 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import ResultsScreen from '../screens/ResultsScreen';
+import SettingsScreen from '../screens/ResultsScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -21,14 +21,14 @@ const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'Camera',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? 'ios-camera'
+          : 'camera'
       }
     />
   ),
@@ -36,21 +36,21 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
-const LinksStack = createStackNavigator(
+const ResultsStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Results: ResultsScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+ResultsStack.navigationOptions = {
+  tabBarLabel: 'Results',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-book' : 'book-open'} />
   ),
 };
 
-LinksStack.path = '';
+ResultsStack.path = '';
 
 const SettingsStack = createStackNavigator(
   {
@@ -70,7 +70,7 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  ResultsStack,
   SettingsStack,
 });
 
